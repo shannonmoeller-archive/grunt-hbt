@@ -1,0 +1,21 @@
+{
+  "name": "grunt-hbt",
+  "version": "0.1.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/shannonmoeller/grunt-hbt.git"
+  },
+  "dependencies": {
+    "handlebars": "*"
+  },
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-clean": "*",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-nodeunit": "*"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}

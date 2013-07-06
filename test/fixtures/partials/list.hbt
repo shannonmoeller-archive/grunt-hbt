@@ -1,0 +1,7 @@
+{{#if items}}
+    <ul>
+        {{#items}}
+            <li>{{.}}</li>
+        {{/items}}
+    </ul>
+{{/if}}
