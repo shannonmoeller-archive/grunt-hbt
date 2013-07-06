@@ -17,11 +17,30 @@ Once the plugin has been installed, it may be enabled inside your Gruntfile with
 ```js
 grunt.loadNpmTasks('grunt-hbt');
 ```
-## Handlebars task
+## `hbt` task
 
 _Run this task with the `grunt hbt` command._
 
 Task targets, files and options may be specified according to the grunt [Configuring tasks](http://gruntjs.com/configuring-tasks) guide.
+
+### Example
+
+```js
+grunt.initConfig({
+  hbt: {
+    all: {
+      options: {
+        data: grunt.file.readJSON('src/meta.json'),
+        helpers: 'src/view/helpers/*.js',
+        partials: 'src/view/partials/*.hbt',
+      },
+
+      files: {
+        'out/index.html': 'src/index.hbt'
+      }
+    }
+  }
+```
 
 ### Options
 
