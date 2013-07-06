@@ -22,6 +22,7 @@ var defaults = {
     data: {},
     helpers: {},
     partials: [],
+    compilerOptions: {},
     processPartialName: processName
 };
 
@@ -168,7 +169,7 @@ HandlebarsTemplate.prototype.writeFiles = function () {
         grunt.log.write('Creating "%s"...', file.dest);
 
         var contents = grunt.file.read(file.src);
-        var renderer = handlebars.compile(contents);
+        var renderer = handlebars.compile(contents, options.compilerOptions);
 
         grunt.file.write(file.dest, renderer(options.data));
 

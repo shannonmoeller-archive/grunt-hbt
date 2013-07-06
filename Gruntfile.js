@@ -19,9 +19,13 @@ module.exports = function (grunt) {
             all: ['Gruntfile.js', 'tasks/**/*.js']
         },
 
+        nodeunit: {
+            all: ['test/**/test.*.js']
+        },
+
         hbt: {
             options: {
-                data: grunt.file.readJSON('test/data.json')
+                data: grunt.file.readJSON('test/fixtures/data.json')
             },
 
             optionsAsStrings: {
@@ -31,7 +35,7 @@ module.exports = function (grunt) {
                 },
 
                 files: {
-                    '<%= dirs.actual %>/optionsAsStrings.html': '<%= dirs.fixtures %>/index.hbt'
+                    '<%= dirs.actual %>/optionsAsStrings.html': '<%= dirs.fixtures %>/foo.hbt'
                 }
             },
 
@@ -43,12 +47,12 @@ module.exports = function (grunt) {
                         }
                     },
                     partials: {
-                        list: '{{#items}}{{.}} {{/items}}',
+                        list: '{{#items}}\n    {{.}}\n{{/items}}',
                     }
                 },
 
                 files: {
-                    '<%= dirs.actual %>/optionsAsObjects.html': '<%= dirs.fixtures %>/index.hbt'
+                    '<%= dirs.actual %>/optionsAsObjects.html': '<%= dirs.fixtures %>/foo.hbt'
                 }
             },
 
@@ -68,9 +72,12 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: '<%= dirs.fixtures %>',
-                    src: 'index.hbt',
-                    ext: '.html',
-                    dest: '<%= dirs.actual %>'
+                    src: [
+                        '**/*.hbt',
+                        '!**/partials/**'
+                    ],
+                    dest: '<%= dirs.actual %>',
+                    ext: '.html'
                 }]
             }
         }
@@ -83,6 +90,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
     // Tasks
-    grunt.registerTask('test', ['jshint', 'clean', 'hbt']);
+    grunt.registerTask('test', ['jshint', 'hbt', 'nodeunit', 'clean']);
     grunt.registerTask('default', ['test']);
 };
