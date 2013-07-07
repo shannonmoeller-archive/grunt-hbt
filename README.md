@@ -145,3 +145,4 @@ $ grunt test
 
 MIT
 
+![Bitdeli](https://d2weczhvl823v0.cloudfront.net/shannonmoeller/grunt-hbt/trend.png)
