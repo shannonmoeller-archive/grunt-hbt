@@ -180,7 +180,7 @@ HandlebarsTemplate.prototype.writeFiles = function () {
         var locals = Object.create(data);
 
         // Expose relative base path
-        locals['@relativeBasePath'] = path.relative(path.dirname(file.src[0]), file.orig.cwd || '') || '.';
+        locals.relativeBasePath = path.relative(path.dirname(file.src[0]), file.orig.cwd || '') || '.';
 
         // Render and write
         grunt.file.write(file.dest, renderer(locals));
