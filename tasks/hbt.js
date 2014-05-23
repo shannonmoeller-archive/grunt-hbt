@@ -170,17 +170,27 @@ HandlebarsTemplate.prototype.writeFiles = function () {
     this.files.forEach(function (file) {
         grunt.log.write('Creating "%s"...', file.dest);
 
-        // Read
-        var contents = grunt.file.read(file.src);
+        var cwd = file.orig.cwd || '';
+        var src = file.src[0];
+        var dirname = path.dirname(src);
+        var basename = path.basename(src);
+        var relative = path.relative(dirname, cwd) || '.';
 
-        // Compile
+        // Read and compile
+        var contents = grunt.file.read(file.src);
         var renderer = handlebars.compile(contents, compilerOptions);
 
         // Extend data
         var locals = Object.create(data);
 
-        // Expose relative base path
-        locals.relativeBasePath = path.relative(path.dirname(file.src[0]), file.orig.cwd || '') || '.';
+        // Expose file
+        locals.file = {
+            cwd: cwd,
+            src: src,
+            dirname: dirname,
+            basename: basename,
+            relativePath: relative
+        };
 
         // Render and write
         grunt.file.write(file.dest, renderer(locals));
