@@ -1,3 +1,5 @@
+# DEPRECATED: Use [`grunt-hb`](https://github.com/shannonmoeller/grunt-hb) instead.
+
 # grunt-hbt [![Build Status](https://travis-ci.org/shannonmoeller/grunt-hbt.png?branch=master)](https://travis-ci.org/shannonmoeller/grunt-hbt)
 
 > A sane Grunt plugin for compiling Handlebars templates to HTML files. Inspired by [grunt-contrib-handlebars](https://github.com/gruntjs/grunt-contrib-handlebars). These two grunt plugins may be used together to compile both static HTML and JST files from the same set of Handlebars templates.
